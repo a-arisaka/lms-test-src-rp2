@@ -55,9 +55,10 @@ public class Case02 {
 
 		Thread.sleep(5000);
 
-		//スクリーンショットをフォルダに格納
 		File file = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(file, new File("C:\\work\\ScreenShot_practice\\case2_login.png"));
+		String destinationPath = "evidence/case02_01" + ".png";
+		File destFile = new File(destinationPath);
+		FileUtils.copyFile(file, destFile);
 	}
 
 	@Test
@@ -77,9 +78,14 @@ public class Case02 {
 
 		assertTrue(errorMsg.isDisplayed());
 
-		//スクリーンショットをフォルダに格納
+		//FileUtils.copyFile(file, new File("C:\\work\\ScreenShot_practice\\login_faild.png"));
+		//スクリーンショットをevidenceフォルダに保存
+
 		File file = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(file, new File("C:\\work\\ScreenShot_practice\\login_faild.png"));
+		String destinationPath = "evidence/case02_02" + ".png";
+		File destFile = new File(destinationPath);
+
+		FileUtils.copyFile(file, destFile);
 
 	}
 
