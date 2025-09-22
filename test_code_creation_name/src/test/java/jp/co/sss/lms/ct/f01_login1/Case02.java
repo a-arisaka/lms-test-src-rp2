@@ -71,6 +71,7 @@ public class Case02 {
 		webDriver.findElement(By.xpath("//*[@id=\"main\"]/div[1]/form/fieldset/div[3]/div/input")).click();
 
 		//エラーメッセージ「ログインに失敗しました。」が表示されることをチェック
+		//xpathを使用
 		WebElement errorMsg = webDriver
 				.findElement(By.xpath("//*[@id=\"main\"]/div[1]/form/span"));
 
