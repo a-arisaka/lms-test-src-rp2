@@ -78,7 +78,6 @@ public class Case02 {
 
 		assertTrue(errorMsg.isDisplayed());
 
-		//FileUtils.copyFile(file, new File("C:\\work\\ScreenShot_practice\\login_faild.png"));
 		//スクリーンショットをevidenceフォルダに保存
 
 		File file = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);

@@ -45,7 +45,6 @@ public class Case01 {
 		webDriver.get("http://localhost:8080/lms/");
 		assertEquals("ログイン | LMS", webDriver.getTitle());
 		Thread.sleep(5000);
-		//FileUtils.copyFile(file, new File("C:\\Users\\a-arisaka\\git\\lms-test-src-rp2\\test_code_creation_name\\evidence\\login_success.png"));
 
 		//スクリーンショットをevidenceフォルダに保存
 		File file = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
