@@ -66,9 +66,13 @@ public class Case04 {
 	@Order(2)
 	@DisplayName("テスト02 初回ログイン済みの受講生ユーザーでログイン")
 	void test02() throws Exception {
-		//DBに登録されていないIDとパスワードでログイン
-		webDriver.findElement(By.id("loginId")).sendKeys("StudentAA01");
-		webDriver.findElement(By.id("password")).sendKeys("StudentAA01a");
+		//初回ログイン済みのパスワードでログイン
+		WebElement loginId = webDriver.findElement(By.id("loginId"));
+		loginId.clear();
+		loginId.sendKeys("StudentAA01");
+		WebElement password = webDriver.findElement(By.id("password"));
+		password.clear();
+		password.sendKeys("StudentAA01a");
 		//ログインを実行
 		webDriver.findElement(By.xpath("//*[@id=\"main\"]/div[1]/form/fieldset/div[3]/div/input")).click();
 
@@ -79,7 +83,6 @@ public class Case04 {
 		assertTrue(welcomeUser.isDisplayed());
 
 		//スクリーンショットをevidenceフォルダに保存
-
 		File file = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
 		String destinationPath = "evidence/case04_02" + ".png";
 		File destFile = new File(destinationPath);
@@ -99,7 +102,6 @@ public class Case04 {
 		//遷移したページがヘルプページであるか確認
 		assertEquals("ヘルプ | LMS", webDriver.getTitle());
 		//スクリーンショットをevidenceフォルダに保存
-
 		File file = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
 		String destinationPath = "evidence/case04_03" + ".png";
 		File destFile = new File(destinationPath);
@@ -127,7 +129,6 @@ public class Case04 {
 		tabs.remove(originalTab);
 		webDriver.switchTo().window(tabs.get(0));
 		//スクリーンショットをevidenceフォルダに保存
-
 		File file = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
 		String destinationPath = "evidence/case04_04" + ".png";
 		File destFile = new File(destinationPath);
