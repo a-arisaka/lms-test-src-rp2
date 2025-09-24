@@ -139,7 +139,6 @@ public class Case05 {
 		File destFile = new File(destinationPath);
 
 		FileUtils.copyFile(file, destFile);
-
 	}
 
 	@Test
@@ -169,7 +168,7 @@ public class Case05 {
 			}
 		}
 		assertTrue(keywordFound, "検索結果のいずれの行にもキーワード「研修」が含まれていませんでした。");
-		
+
 		//ページをスクロール
 		JavascriptExecutor js = (JavascriptExecutor) webDriver;
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
@@ -180,6 +179,7 @@ public class Case05 {
 		File destFile = new File(destinationPath);
 
 		FileUtils.copyFile(file, destFile);
+		js.executeScript("window.scrollTo(0, 0)");
 
 	}
 
@@ -189,8 +189,11 @@ public class Case05 {
 	void test06() throws Exception {
 		// キーワード検索ボックスを取得
 		WebElement keyword = webDriver.findElement(By.xpath("//*[@id=\"form\"]"));
-		//クリアボタン押下
-		webDriver.findElement(By.xpath("//*[@id=\"main\"]/div[1]/form/fieldset/div[2]/div/input[2]")).click();
+		WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+		//クリック可能になるまで待機
+		By clearButtonLocator = By.xpath("//input[@value='クリア']");
+		WebElement clear = wait.until(ExpectedConditions.elementToBeClickable(clearButtonLocator));
+		clear.click();
 		//要素が空かどうか確認
 		String textAfterClear = keyword.getAttribute("value");
 		assertEquals("", textAfterClear);
