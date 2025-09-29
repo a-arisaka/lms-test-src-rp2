@@ -114,7 +114,8 @@ public class Case11 {
 	@Order(5)
 	@DisplayName("テスト05 すべての研修日程の勤怠情報を正しく更新し勤怠管理画面に遷移")
 	void test05() {
-		// TODO ここに追加
+		WebElement fixedTimeButton = WebDriverUtils.webDriver
+				.findElement(By.xpath("//tr[td[contains(text(), 'ハードウェア、ソフトウェア、WWW')]]//input[@value='詳細']"));
 	}
 
 }
