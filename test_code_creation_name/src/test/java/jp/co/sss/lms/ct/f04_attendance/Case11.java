@@ -113,9 +113,28 @@ public class Case11 {
 	@Test
 	@Order(5)
 	@DisplayName("テスト05 すべての研修日程の勤怠情報を正しく更新し勤怠管理画面に遷移")
-	void test05() {
-		WebElement fixedTimeButton = WebDriverUtils.webDriver
-				.findElement(By.xpath("//tr[td[contains(text(), 'ハードウェア、ソフトウェア、WWW')]]//input[@value='詳細']"));
+	void test05() throws Exception {
+		Thread.sleep(300);
+		WebElement fixedTimeButton = webDriver
+				.findElement(
+						By.xpath("//tr[td[contains(text(), 'ハードウェア、ソフトウェア、WWW')]]//button[contains(text(),'定時')]"));
+
+		fixedTimeButton.click();
+
+		scrollTo("document.body.scrollHeight");
+
+		final WebElement userDetail = webDriver.findElement(By.name("complete"));
+		userDetail.click();
+
+		Alert alert = WebDriverUtils.webDriver.switchTo().alert();
+		alert.accept();
+
+		String pageTitle = webDriver.getTitle();
+		assertEquals("勤怠情報変更｜LMS", pageTitle);
+
+		getEvidence(new Object() {
+		});
+
 	}
 
 }
