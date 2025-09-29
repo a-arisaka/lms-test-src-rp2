@@ -96,7 +96,7 @@ public class Case07 {
 	@Order(3)
 	@DisplayName("テスト03 未提出の研修日の「詳細」ボタンを押下しセクション詳細画面に遷移")
 	void test03() throws Exception {
-		WebElement button = webDriver.findElement(By.xpath("(//input[@value='詳細'])[3]"));
+		WebElement button = webDriver.findElement(By.xpath("//tr[td[contains(text(), '未提出')]]//input[@value='詳細']"));
 
 		JavascriptExecutor js = (JavascriptExecutor) webDriver;
 		js.executeScript("arguments[0].click();", button);

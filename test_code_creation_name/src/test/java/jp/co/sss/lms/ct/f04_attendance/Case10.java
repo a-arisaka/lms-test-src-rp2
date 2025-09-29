@@ -88,6 +88,9 @@ public class Case10 {
 		WebElement attendanceButton = webDriver.findElement(By.xpath("//a[@href='/lms/attendance/detail']"));
 		attendanceButton.click();
 		Thread.sleep(300);
+		Alert alert = WebDriverUtils.webDriver.switchTo().alert();
+		alert.accept();
+		pageLoadTimeout(10);
 		assertEquals("勤怠情報変更｜LMS", webDriver.getTitle());
 		// ページのキャプチャを取得する
 		getEvidence(new Object() {
@@ -127,7 +130,7 @@ public class Case10 {
 		//属性値が変化しているか確認
 		String classText = WebDriverUtils.webDriver.findElement(By.xpath("//div[@class='main2clm']/div"))
 				.getAttribute("class");
-		assertEquals("alert alert-info alert-dismissible fade in", classText);
+		assertEquals("well well-lg p10 mb10", classText);
 		getEvidence(new Object() {
 		});
 

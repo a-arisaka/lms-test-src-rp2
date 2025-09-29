@@ -96,7 +96,7 @@ public class Case08 {
 	@Order(3)
 	@DisplayName("テスト03 提出済の研修日の「詳細」ボタンを押下しセクション詳細画面に遷移")
 	void test03() throws Exception {
-		WebElement button = webDriver.findElement(By.xpath("(//input[@value='詳細'])[2]"));
+		WebElement button = webDriver.findElement(By.xpath("//tr[td[contains(text(), '提出済み')]]//input[@value='詳細']"));
 		button.click();
 		Thread.sleep(300);
 		assertEquals("セクション詳細 | LMS", webDriver.getTitle());
@@ -185,7 +185,8 @@ public class Case08 {
 	@DisplayName("テスト07 該当レポートの「詳細」ボタンを押下しレポート詳細画面で修正内容が反映される")
 	void test07() throws Exception {
 		//2022年10月2日(日)の週報【デモ】の詳細ボタンを取得
-		WebElement weeklyReport = webDriver.findElement(By.xpath("(//input[@value='詳細'])[3]"));
+		WebElement weeklyReport = webDriver
+				.findElement(By.xpath("//tr[td[contains(text(), '週報【デモ】')]]//input[@value='詳細']"));
 		//ページを該当箇所までスクロールさせ、詳細ボタンを押下
 		JavascriptExecutor js = (JavascriptExecutor) webDriver;
 		//スクリーンショットをevidenceフォルダに保存
