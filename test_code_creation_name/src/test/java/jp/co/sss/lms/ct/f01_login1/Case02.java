@@ -3,9 +3,6 @@ package jp.co.sss.lms.ct.f01_login1;
 import static jp.co.sss.lms.ct.util.WebDriverUtils.*;
 import static org.junit.Assert.*;
 
-import java.io.File;
-
-import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -14,8 +11,6 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -45,8 +40,9 @@ public class Case02 {
 	@Order(1)
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() throws Exception {
-		webDriver.get("http://localhost:8080/lms/");
-		assertEquals("ログイン | LMS", webDriver.getTitle());
+		goTo("http://localhost:8080/lms/");
+		String pageTitle = webDriver.getTitle();
+		assertEquals("ログイン | LMS", pageTitle);
 		//ログインIDとパスワード入力欄が表示されているかチェック
 		WebElement elemUser = webDriver.findElement(By.id("loginId"));
 		WebElement elemPass = webDriver.findElement(By.id("password"));
@@ -55,10 +51,8 @@ public class Case02 {
 
 		Thread.sleep(5000);
 
-		File file = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-		String destinationPath = "evidence/case02_01" + ".png";
-		File destFile = new File(destinationPath);
-		FileUtils.copyFile(file, destFile);
+		getEvidence(new Object() {
+		});
 	}
 
 	@Test
@@ -80,11 +74,8 @@ public class Case02 {
 
 		//スクリーンショットをevidenceフォルダに保存
 
-		File file = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-		String destinationPath = "evidence/case02_02" + ".png";
-		File destFile = new File(destinationPath);
-
-		FileUtils.copyFile(file, destFile);
+		getEvidence(new Object() {
+		});
 
 	}
 
