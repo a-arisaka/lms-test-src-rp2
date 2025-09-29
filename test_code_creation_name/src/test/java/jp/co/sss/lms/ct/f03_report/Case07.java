@@ -4,10 +4,8 @@ import static jp.co.sss.lms.ct.util.WebDriverUtils.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.File;
 import java.time.Duration;
 
-import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -17,8 +15,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -48,8 +44,9 @@ public class Case07 {
 	@Order(1)
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() throws Exception {
-		webDriver.get("http://localhost:8080/lms/");
-		assertEquals("ログイン | LMS", webDriver.getTitle());
+		goTo("http://localhost:8080/lms/");
+		String pageTitle = webDriver.getTitle();
+		assertEquals("ログイン | LMS", pageTitle);
 		//ログインIDとパスワード入力欄が表示されているかチェック
 		WebElement elemUser = webDriver.findElement(By.id("loginId"));
 		WebElement elemPass = webDriver.findElement(By.id("password"));
@@ -58,10 +55,8 @@ public class Case07 {
 
 		Thread.sleep(5000);
 
-		File file = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-		String destinationPath = "evidence/case07_01" + ".png";
-		File destFile = new File(destinationPath);
-		FileUtils.copyFile(file, destFile);
+		getEvidence(new Object() {
+		});
 	}
 
 	@Test
@@ -85,18 +80,15 @@ public class Case07 {
 		assertTrue(welcomeUser.isDisplayed());
 
 		//スクリーンショットをevidenceフォルダに保存
-		File file = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-		String destinationPath = "evidence/case07_02" + ".png";
-		File destFile = new File(destinationPath);
-
-		FileUtils.copyFile(file, destFile);
+		getEvidence(new Object() {
+		});
 	}
 
 	@Test
 	@Order(3)
 	@DisplayName("テスト03 未提出の研修日の「詳細」ボタンを押下しセクション詳細画面に遷移")
 	void test03() throws Exception {
-		WebElement button = webDriver.findElement(By.xpath("//tr[td[contains(text(), '未提出')]]//input[@value='詳細']"));
+		WebElement button = webDriver.findElement(By.xpath("(//input[@value='詳細'])[1]"));
 
 		JavascriptExecutor js = (JavascriptExecutor) webDriver;
 		js.executeScript("arguments[0].click();", button);
@@ -104,11 +96,8 @@ public class Case07 {
 		Thread.sleep(300);
 		assertEquals("セクション詳細 | LMS", webDriver.getTitle());
 		//スクリーンショットをevidenceフォルダに保存
-		File file = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-		String destinationPath = "evidence/case07_03" + ".png";
-		File destFile = new File(destinationPath);
-
-		FileUtils.copyFile(file, destFile);
+		getEvidence(new Object() {
+		});
 
 	}
 
@@ -122,11 +111,8 @@ public class Case07 {
 		submissionButton.click();
 		assertEquals("レポート登録 | LMS", webDriver.getTitle());
 		//スクリーンショットをevidenceフォルダに保存
-		File file = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-		String destinationPath = "evidence/case07_04" + ".png";
-		File destFile = new File(destinationPath);
-
-		FileUtils.copyFile(file, destFile);
+		getEvidence(new Object() {
+		});
 
 	}
 
@@ -149,12 +135,8 @@ public class Case07 {
 		assertTrue(button.isDisplayed());
 
 		//スクリーンショットをevidenceフォルダに保存
-		File file = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-		String destinationPath = "evidence/case07_05" + ".png";
-		File destFile = new File(destinationPath);
-
-		FileUtils.copyFile(file, destFile);
-
+		getEvidence(new Object() {
+		});
 	}
 
 }

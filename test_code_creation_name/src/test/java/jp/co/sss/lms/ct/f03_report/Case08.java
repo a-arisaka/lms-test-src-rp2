@@ -48,8 +48,9 @@ public class Case08 {
 	@Order(1)
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() throws Exception {
-		webDriver.get("http://localhost:8080/lms/");
-		assertEquals("ログイン | LMS", webDriver.getTitle());
+		goTo("http://localhost:8080/lms/");
+		String pageTitle = webDriver.getTitle();
+		assertEquals("ログイン | LMS", pageTitle);
 		//ログインIDとパスワード入力欄が表示されているかチェック
 		WebElement elemUser = webDriver.findElement(By.id("loginId"));
 		WebElement elemPass = webDriver.findElement(By.id("password"));
@@ -58,10 +59,8 @@ public class Case08 {
 
 		Thread.sleep(5000);
 
-		File file = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-		String destinationPath = "evidence/case08_01" + ".png";
-		File destFile = new File(destinationPath);
-		FileUtils.copyFile(file, destFile);
+		getEvidence(new Object() {
+		});
 	}
 
 	@Test
@@ -85,11 +84,8 @@ public class Case08 {
 		assertTrue(welcomeUser.isDisplayed());
 
 		//スクリーンショットをevidenceフォルダに保存
-		File file = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-		String destinationPath = "evidence/case08_02" + ".png";
-		File destFile = new File(destinationPath);
-
-		FileUtils.copyFile(file, destFile);
+		getEvidence(new Object() {
+		});
 	}
 
 	@Test
@@ -101,11 +97,8 @@ public class Case08 {
 		Thread.sleep(300);
 		assertEquals("セクション詳細 | LMS", webDriver.getTitle());
 		//スクリーンショットをevidenceフォルダに保存
-		File file = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-		String destinationPath = "evidence/case08_03" + ".png";
-		File destFile = new File(destinationPath);
-
-		FileUtils.copyFile(file, destFile);
+		getEvidence(new Object() {
+		});
 
 	}
 
@@ -121,12 +114,8 @@ public class Case08 {
 		js.executeScript("arguments[0].click();", confirmButton);
 		assertEquals("レポート登録 | LMS", webDriver.getTitle());
 		//スクリーンショットをevidenceフォルダに保存
-		File file = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-		String destinationPath = "evidence/case08_04" + ".png";
-		File destFile = new File(destinationPath);
-
-		FileUtils.copyFile(file, destFile);
-
+		getEvidence(new Object() {
+		});
 	}
 
 	@Test
@@ -158,11 +147,8 @@ public class Case08 {
 		Thread.sleep(300);
 		assertEquals("セクション詳細 | LMS", webDriver.getTitle());
 		//スクリーンショットをevidenceフォルダに保存
-		File file2 = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-		String destinationPath2 = "evidence/case08_05_02" + ".png";
-		File destFile2 = new File(destinationPath2);
-
-		FileUtils.copyFile(file2, destFile2);
+		getEvidence(new Object() {
+		});
 
 	}
 
@@ -173,11 +159,8 @@ public class Case08 {
 		webDriver.findElement(By.xpath("//a[@href='/lms/user/detail']")).click();
 		assertEquals("ユーザー詳細", webDriver.getTitle());
 		//スクリーンショットをevidenceフォルダに保存
-		File file = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-		String destinationPath = "evidence/case08_06" + ".png";
-		File destFile = new File(destinationPath);
-
-		FileUtils.copyFile(file, destFile);
+		getEvidence(new Object() {
+		});
 	}
 
 	@Test
@@ -203,11 +186,8 @@ public class Case08 {
 		assertTrue(impressions.isDisplayed());
 
 		//スクリーンショットをevidenceフォルダに保存
-		File file2 = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-		String destinationPath2 = "evidence/case08_07_02" + ".png";
-		File destFile2 = new File(destinationPath2);
-
-		FileUtils.copyFile(file2, destFile2);
+		getEvidence(new Object() {
+		});
 
 	}
 
