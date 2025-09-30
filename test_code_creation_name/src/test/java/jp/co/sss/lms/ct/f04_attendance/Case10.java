@@ -42,16 +42,17 @@ public class Case10 {
 	@Order(1)
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() throws Exception {
-		webDriver.get("http://localhost:8080/lms/");
-		assertEquals("ログイン | LMS", webDriver.getTitle());
+		goTo("http://localhost:8080/lms/");
+		String pageTitle = webDriver.getTitle();
+		assertEquals("ログイン | LMS", pageTitle);
 		//ログインIDとパスワード入力欄が表示されているかチェック
 		WebElement elemUser = webDriver.findElement(By.id("loginId"));
 		WebElement elemPass = webDriver.findElement(By.id("password"));
 		assertTrue(elemUser.isDisplayed());
 		assertTrue(elemPass.isDisplayed());
+
 		Thread.sleep(5000);
 
-		// ページのキャプチャを取得する
 		getEvidence(new Object() {
 		});
 	}
