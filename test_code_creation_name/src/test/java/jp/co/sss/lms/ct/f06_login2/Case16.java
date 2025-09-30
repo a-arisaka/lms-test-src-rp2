@@ -61,10 +61,10 @@ public class Case16 {
 		//DBに登録された受講生ユーザーでログインする
 		WebElement loginId = webDriver.findElement(By.id("loginId"));
 		loginId.clear();
-		loginId.sendKeys("StudentAA02");
+		loginId.sendKeys("StudentAA03");
 		WebElement password = webDriver.findElement(By.id("password"));
 		password.clear();
-		password.sendKeys("StudentAA02");
+		password.sendKeys("StudentAA03");
 		//ログインを実行
 		webDriver.findElement(By.xpath("//*[@id=\"main\"]/div[1]/form/fieldset/div[3]/div/input")).click();
 		//利用規約画面に遷移できているかどうか確認
@@ -78,9 +78,11 @@ public class Case16 {
 	@Order(3)
 	@DisplayName("テスト03 「同意します」チェックボックスにチェックを入れ「次へ」ボタン押下")
 	void test03() throws Exception {
-		WebElement checkbox = webDriver.findElement(By.xpath("//div[@class='checkbox' and text()='同意します']"));
-		scrollBy("5");
+		WebElement checkbox = webDriver.findElement(By.xpath("//input[@type='checkbox']"));
+		scrollBy("100");
 		checkbox.click();
+		WebElement next = webDriver.findElement(By.xpath("//button[text()='次へ']"));
+		next.click();
 		assertEquals("パスワード変更 | LMS", WebDriverUtils.webDriver.getTitle());
 		//スクリーンショットをevidenceフォルダに保存
 		getEvidence(new Object() {
@@ -92,7 +94,13 @@ public class Case16 {
 	@Order(4)
 	@DisplayName("テスト04 パスワードを未入力で「変更」ボタン押下")
 	void test04() throws Exception {
-		WebElement changePassword = webDriver.findElement(By.xpath("//button[text()='変更']"));
+		WebElement currentPassword = webDriver.findElement(By.id("currentPassword"));
+		currentPassword.clear();
+		WebElement password = webDriver.findElement(By.id("password"));
+		password.clear();
+		WebElement passwordConfirm = webDriver.findElement(By.id("passwordConfirm"));
+		passwordConfirm.clear();
+		WebElement changePassword = webDriver.findElement(By.id("upd-btn"));
 		changePassword.click();
 		webDriver.findElement(By.xpath("//button[@type='submit']")).submit();
 		Thread.sleep(300);
@@ -116,10 +124,10 @@ public class Case16 {
 	void test05() throws Exception {
 		WebElement currentPassword = webDriver.findElement(By.id("currentPassword"));
 		currentPassword.clear();
-		currentPassword.sendKeys("StudentAA02");
+		currentPassword.sendKeys("StudentAA03");
 		WebElement password = webDriver.findElement(By.id("password"));
 		password.clear();
-		password.sendKeys("StudentAA02aaaaaaaaaaa");
+		password.sendKeys("StudentAA03aaaaaaaaaaa");
 		WebElement passwordConfirm = webDriver.findElement(By.id("passwordConfirm"));
 		passwordConfirm.clear();
 		passwordConfirm.sendKeys("StudentAA02aaaaaaaaaaa");
@@ -138,7 +146,7 @@ public class Case16 {
 	void test06() throws Exception {
 		WebElement currentPassword = webDriver.findElement(By.id("currentPassword"));
 		currentPassword.clear();
-		currentPassword.sendKeys("StudentAA02");
+		currentPassword.sendKeys("StudentAA03");
 		WebElement password = webDriver.findElement(By.id("password"));
 		password.clear();
 		password.sendKeys("A");
@@ -161,7 +169,7 @@ public class Case16 {
 	void test07() throws Exception {
 		WebElement currentPassword = webDriver.findElement(By.id("currentPassword"));
 		currentPassword.clear();
-		currentPassword.sendKeys("StudentAA02");
+		currentPassword.sendKeys("StudentAA03");
 		WebElement password = webDriver.findElement(By.id("password"));
 		password.clear();
 		password.sendKeys("StudentAA02a");
