@@ -172,13 +172,6 @@ public class Case08 {
 				.findElement(By.xpath("//tr[td[contains(text(), '週報【デモ】')]]//input[@value='詳細']"));
 		//ページを該当箇所までスクロールさせ、詳細ボタンを押下
 		JavascriptExecutor js = (JavascriptExecutor) webDriver;
-		//スクリーンショットをevidenceフォルダに保存
-
-		File file1 = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-		String destinationPath1 = "evidence/case08_07_01" + ".png";
-		File destFile1 = new File(destinationPath1);
-
-		FileUtils.copyFile(file1, destFile1);
 		js.executeScript("arguments[0].click();", weeklyReport);
 
 		//所感テキストを取得
