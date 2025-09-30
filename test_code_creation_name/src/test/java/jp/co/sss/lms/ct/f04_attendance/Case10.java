@@ -76,8 +76,6 @@ public class Case10 {
 				.findElement(By.xpath("//*[@id=\"nav-content\"]/ul[2]/li[2]/a"));
 
 		assertTrue(welcomeUser.isDisplayed());
-
-		// ページのキャプチャを取得する
 		getEvidence(new Object() {
 		});
 	}
@@ -93,7 +91,6 @@ public class Case10 {
 		alert.accept();
 		pageLoadTimeout(10);
 		assertEquals("勤怠情報変更｜LMS", webDriver.getTitle());
-		// ページのキャプチャを取得する
 		getEvidence(new Object() {
 		});
 

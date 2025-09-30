@@ -52,7 +52,7 @@ public class Case04 {
 		assertTrue(elemPass.isDisplayed());
 
 		Thread.sleep(5000);
-
+		//スクリーンショットをevidenceフォルダに保存
 		getEvidence(new Object() {
 		});
 	}
